@@ -3,15 +3,13 @@ import random
 firstBest = []
 secondBest = []
 thirdBest = []
-listLength = 5                                                     #Variable that represents the size of species list
+listLength = 50                                                    #Variable that represents the size of species list
 
 def calculateSpeciesScore(species):                                #Evaluates quality of each species, 1 = 0 points   2 = 1 point    3 = 2 points
     score = 0
     for i in range(len(species)):
-        if int(species[i]) == 2:
-            score += 1
         if int(species[i]) == 3:
-            score += 2
+            score += 1
     return score
 
 def createBaseRandomSpecies(length):
@@ -19,6 +17,11 @@ def createBaseRandomSpecies(length):
     for i in range(length):
         returnArray.append(random.choice([1,2,3]))
     return returnArray
+
+def createMutation(species):
+    numbersChange = random.randint(1,10)
+    for i in range(numbersChange):
+        print('yeet')
 
 def fillBestThree(species):
     global firstBest
@@ -34,7 +37,7 @@ def fillBestThree(species):
                 secondBest = firstBest
                 firstBest = species
 
-for i in range(10):
+for i in range(9):
     currentRunSpecies = createBaseRandomSpecies(listLength)
     fillBestThree(currentRunSpecies)
     print('Species: ', currentRunSpecies, 'Score: ', calculateSpeciesScore(currentRunSpecies))
